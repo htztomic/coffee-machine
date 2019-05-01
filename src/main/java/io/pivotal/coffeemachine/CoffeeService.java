@@ -46,7 +46,7 @@ public class CoffeeService {
      */
     public Drink makeDrink(String name) {
         if (!ingredientsMenu.containsKey(name)) {
-            return null;
+            throw new IllegalArgumentException(name + " drink does not exist in menu");
         }
         Map<String, Integer> ingredients = ingredientsMenu.get(name);
         //Deducts the drink's ingredients from the inventory
@@ -54,7 +54,9 @@ public class CoffeeService {
             try {
                 inventory.deduct(key, ingredients.get(key));
             } catch (IllegalArgumentException i) {
-                return null;
+                //Slightly redundant but could be used to restore inventory items removed
+                // or call on a different process to handle this issue.
+                throw i;
             }
         }
         Drink resultingDrink = new Drink();
