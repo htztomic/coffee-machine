@@ -26,8 +26,7 @@ public class CoffeeService {
             for (int j = 0; j < ingredient.length; j++) {
                 drinkIngredients.put(possibleIngredients[j], ingredient[j]);
             }
-            ingredientsMenu.put(drinkNames[i], drinkIngredients);
-            costMenu.put(drinkNames[i], drinkCosts[i]);
+            createDrink(drinkNames[i], drinkIngredients, drinkCosts[i]);
         }
     }
 
