@@ -20,12 +20,12 @@ public class MainInventory implements Inventory {
 
     public void deduct(String name, Integer amount) {
         if (!inventory.containsKey(name)) {
-            throw new IllegalArgumentException("Incorrect name");
+            throw new IllegalArgumentException(name + " is not part of the inventory");
         }
         Integer initialAmount = inventory.get(name);
 
         if (initialAmount - amount < 0) {
-            throw new IllegalArgumentException("Unable to deduct that amount");
+            throw new IllegalArgumentException("Unable to deduct " + amount + " from " + initialAmount);
         }
 
         inventory.put(name, initialAmount - amount);
