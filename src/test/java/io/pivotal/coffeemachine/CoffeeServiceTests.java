@@ -49,6 +49,8 @@ public class CoffeeServiceTests {
         latteIngredients.put("sugar", 2);
         latteIngredients.put("cream", 2);
         this.machine.createDrink("latte", latteIngredients, 3.50);
+        Map<String, Double> newMenu = this.machine.getMenu();
+        assertThat(newMenu).contains(entry("latte", 3.50));
         this.machine.makeDrink("latte");
         verify(this.inventory).deduct("coffee", 3);
         verify(this.inventory).deduct("sugar", 2);
